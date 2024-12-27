@@ -1,0 +1,36 @@
+LazyLoading in Entity Framwork
+
+Best Practicices
+1.Use When loading an Object Graph is Costly
+2.Use in Desktop Application.
+3.Avoid in Web Application
+
+4.To stop LazyLoading Don't Mark "Virtual" Keyword In Property.
+5.To Disbale LazyLoading From Configuration . In Plutodb_Context
+            this.Configuration.LazyLoadingEnabled = false;
+						
+			
+Eager Loading
+1.Uses JOINs
+2.One Round-Trip
+3.use Web application
+
+Multiple Levels.
+//For SIngle Properties
+context.Courses.Include(c=>c.Author.Address);
+
+//for Collection Properties
+context.Courses.Include(a=>a.Tages);
+
+//Too Many Egar Loading
+context.Courses.Include(c=>c.Author.Address)
+				.Include(a=>a.Tages.Select(t=>t.Moderator))
+				.Include(c=>c.Catagory)
+				.Include(c=>c.Cover);
+				
+				
+Explict Loading
+1.Separates Queries
+2.Multiple Round-Trips
+
+
